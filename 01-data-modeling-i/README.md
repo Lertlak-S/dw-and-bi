@@ -10,19 +10,19 @@
 ### รายละเอียด และ ลำดับการสร้าง 3 Table ดังนี้
 1. Table: actors
 
-![Alt text](image-1.png)
+![Alt text](image/image-1.png)
 
 2. Table: repo
 
-![Alt text](image-2.png)
+![Alt text](image/image-2.png)
 
 3. Table: events
 
-![Alt text](image-3.png)
+![Alt text](image/image-3.png)
 
 ### โดยสามารถ query ข้อมูลตามความสัมพันธ์ของทั้ง 3 Tables ด้วย SQL Command ได้ดังนี้
 
-![Alt text](image-4.png)
+![Alt text](image/image-4.png)
 
 
 
