@@ -2,7 +2,6 @@ from typing import NewType
 
 import psycopg2
 
-
 PostgresCursor = NewType("PostgresCursor", psycopg2.extensions.cursor)
 PostgresConn = NewType("PostgresConn", psycopg2.extensions.connection)
 
@@ -14,7 +13,13 @@ table_create_actors = """
     CREATE TABLE IF NOT EXISTS actors (
         id int,
         login text,
-        url text,
+        PRIMARY KEY(id)
+    )
+"""
+table_create_repo = """
+    CREATE TABLE IF NOT EXISTS repo (
+        id int,
+        name text,
         PRIMARY KEY(id)
     )
 """
@@ -23,31 +28,24 @@ table_create_events = """
         id text,
         type text,
         actor_id int,
+        repo_id int,
+        created_at date,
         PRIMARY KEY(id),
-        CONSTRAINT fk_e_actor FOREIGN KEY(actor_id) REFERENCES actors(id)
-    )
-"""
-table_create_repo = """
-    CREATE TABLE IF NOT EXISTS repo (
-        id int,
-        name text,
-        actor_id int,
-        PRIMARY KEY(id),
-        CONSTRAINT fk_r_actor FOREIGN KEY(actor_id) REFERENCES actors(id)
+        CONSTRAINT fk_e_actor FOREIGN KEY(actor_id) REFERENCES actors(id),
+        CONSTRAINT fk_e_repo  FOREIGN KEY(repo_id)  REFERENCES repo(id)
     )
 """
 
 create_table_queries = [
     table_create_actors,
-    table_create_events,
     table_create_repo,
+    table_create_events
 ]
 drop_table_queries = [
     table_drop_events,
-    table_drop_actors,
     table_drop_repo,
+    table_drop_actors
 ]
-
 
 def drop_tables(cur: PostgresCursor, conn: PostgresConn) -> None:
     """
@@ -57,7 +55,6 @@ def drop_tables(cur: PostgresCursor, conn: PostgresConn) -> None:
         cur.execute(query)
         conn.commit()
 
-
 def create_tables(cur: PostgresCursor, conn: PostgresConn) -> None:
     """
     Creates each table using the queries in `create_table_queries` list.
@@ -65,7 +62,6 @@ def create_tables(cur: PostgresCursor, conn: PostgresConn) -> None:
     for query in create_table_queries:
         cur.execute(query)
         conn.commit()
-
 
 def main():
     """
@@ -85,7 +81,6 @@ def main():
     create_tables(cur, conn)
 
     conn.close()
-
 
 if __name__ == "__main__":
     main()

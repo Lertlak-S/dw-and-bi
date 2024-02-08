@@ -5,7 +5,6 @@ from typing import List
 
 import psycopg2
 
-
 def get_files(filepath: str) -> List[str]:
     """
     Description: This function is responsible for listing the files in a directory
@@ -22,7 +21,6 @@ def get_files(filepath: str) -> List[str]:
 
     return all_files
 
-
 def process(cur, conn, filepath):
     # Get list of files from filepath
     all_files = get_files(filepath)
@@ -33,68 +31,65 @@ def process(cur, conn, filepath):
             for each in data:
                 # Print some sample data
                 
-                if each["type"] == "IssueCommentEvent":
-                    print(
-                        each["id"], 
-                        each["type"],
-                        each["actor"]["id"],
-                        each["actor"]["login"],
-                        each["repo"]["id"],
-                        each["repo"]["name"],
-                        each["created_at"],
-                        each["payload"]["issue"]["url"],
-                    )
-                else:
-                    print(
-                        each["id"], 
-                        each["type"],
-                        each["actor"]["id"],
-                        each["actor"]["login"],
-                        each["repo"]["id"],
-                        each["repo"]["name"],
-                        each["created_at"],
-                    )
+                # if each["type"] == "IssueCommentEvent":
+                #     print(
+                #         each["id"], 
+                #         each["type"],
+                #         each["actor"]["id"],
+                #         each["actor"]["login"],
+                #         each["repo"]["id"],
+                #         each["repo"]["name"],
+                #         each["created_at"],
+                #         each["payload"]["issue"]["url"],
+                #     )
+                # else:
+                #     print(
+                #         each["id"], 
+                #         each["type"],
+                #         each["actor"]["id"],
+                #         each["actor"]["login"],
+                #         each["repo"]["id"],
+                #         each["repo"]["name"],
+                #         each["created_at"],
+                #     )
 
                 # Insert data into tables here
                 insert_statement = f"""
                     INSERT INTO actors (
                         id,
-                        login,
-                        url
-                    ) VALUES ({each["actor"]["id"]}, '{each["actor"]["login"]}', '{each["actor"]["url"]}')
+                        login
+                    ) VALUES ({each["actor"]["id"]}, '{each["actor"]["login"]}')
                     ON CONFLICT (id) DO NOTHING
                 """
                 # print(insert_statement)
                 cur.execute(insert_statement)
 
+                # Insert data into tables here
+                insert_statement = f"""
+                    INSERT INTO repo (
+                        id,
+                        name
+                    ) VALUES ('{each["repo"]["id"]}', '{each["repo"]["name"]}')
+                    ON CONFLICT (id) DO NOTHING
+                """
+                # print(insert_statement)
+                cur.execute(insert_statement)
 
                 # Insert data into tables here
                 insert_statement = f"""
                     INSERT INTO events (
                         id,
                         type,
-                        actor_id
-                    ) VALUES ('{each["id"]}', '{each["type"]}', '{each["actor"]["id"]}')
-                    ON CONFLICT (id) DO NOTHING
-                """
-                # print(insert_statement)
-                cur.execute(insert_statement)
-
-
-                # Insert data into tables here
-                insert_statement = f"""
-                    INSERT INTO repo (
-                        id,
-                        name,
-                        actor_id
-                    ) VALUES ('{each["repo"]["id"]}', '{each["repo"]["name"]}', '{each["actor"]["id"]}')
+                        actor_id,
+                        repo_id,
+                        created_at
+                    ) VALUES ('{each["id"]}', '{each["type"]}', '{each["actor"]["id"]}', '{each["repo"]["id"]}', '{each["created_at"]}')
                     ON CONFLICT (id) DO NOTHING
                 """
                 # print(insert_statement)
                 cur.execute(insert_statement)
 
                 conn.commit()
-
 
 def main():
     conn = psycopg2.connect(
@@ -112,7 +107,6 @@ def main():
     process(cur, conn, filepath="../data")
 
     conn.close()
-
 
 if __name__ == "__main__":
     main()
