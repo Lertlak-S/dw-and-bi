@@ -19,7 +19,7 @@
         actor_login text,
         repo_id text,
         repo_name text,
-        created_at text,
+        created_at timestamp,
         public boolean,
         PRIMARY KEY (
             id,
@@ -34,8 +34,8 @@
 select * from github_events.events;
 ```
 
-### ได้ข้อมูลดังนี้
-![Alt text](image/image-1.png)
+### ได้ตัวอย่างข้อมูลดังนี้
+![Alt text](image/image.png)
 
 # Instruction
 ### เข้าไปที่ folder ของไฟล์ด้วยคำสั่ง

@@ -29,7 +29,7 @@ table_create = """
         actor_login text,
         repo_id text,
         repo_name text,
-        created_at text,
+        created_at timestamp,
         public boolean,
         PRIMARY KEY (
             id,
@@ -94,7 +94,7 @@ def process(session, filepath):
             for each in data:
 
                 # Print some sample data
-                created_at = each["created_at"].replace("T"," ").replace("Z","")
+                # created_at = each["created_at"].replace("T"," ").replace("Z","")
                 # print(each["id"], each["type"], each["actor"]["id"], each["actor"]["login"], created_at)
 
                 # Insert data into tables here
@@ -111,7 +111,7 @@ def process(session, filepath):
                     VALUES ('{each["id"]}', '{each["type"]}', 
                             '{each["actor"]["id"]}','{each["actor"]["login"]}',
                             '{each["repo"]["id"]}', '{each["repo"]["name"]}', 
-                            '{created_at}',{each["public"]})
+                            '{each["created_at"]}',{each["public"]})
                 """
                 session.execute(query)
 

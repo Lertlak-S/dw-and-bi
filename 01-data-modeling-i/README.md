@@ -3,7 +3,7 @@
 1. ทำความเข้าใจความสัมพันธ์ของข้อมูลจากไฟล์ .json
 2. สร้าง Data Model ด้วย Postgres ซึ่งเป็น Relational Database
 3. เรียกใช้ container ด้วยการ Run docker compose เพื่อเข้าสู่ Web server ของ Database
-4. สร้าง Table และความสัมพันธ์ด้วยไฟล์ create_tables.py (โดยจะมีการ Drop ตารางก่อน หากมีตารางนั้นๆ อยู่ก่อนแล้ว)
+4. สร้าง Table และความสัมพันธ์ด้วยไฟล์ create_tables.py (โดยจะมีการ Drop Table ก่อน หากมี Table นั้นๆ อยู่แล้ว)
 5. จัดการข้อมูลที่ได้จากไฟล์ .json เข้าสู่ Table ต่างๆ ใน Database ด้วยไฟล์ etl.py
 6. ทำการตรวจสอบข้อมูลใน Database บน Web server
 
