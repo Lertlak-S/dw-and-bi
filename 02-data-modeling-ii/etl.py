@@ -114,7 +114,7 @@ def process(session, filepath):
                             '{each["created_at"]}',{each["public"]})
                 """
                 session.execute(query)
-
+c
 def insert_sample_data(session):
     query = f"""
     INSERT INTO events (id, type, public) VALUES ('23487929637', 'IssueCommentEvent', true)
