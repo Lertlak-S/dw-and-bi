@@ -1,18 +1,5 @@
 # Building a Data Lake
 
-เพื่อให้เราสามารถสร้างไฟล์ได้จาก Jupyter Lab ให้รันคำสั่งด้านล่างนี้
-
-```sh
-sudo chmod 777 .
-```
-
-แล้วค่อยรัน
-
-```sh
-docker-compose up
-```
-
-
 # Instruction
 ### เข้าไปที่ folder ของไฟล์ด้วยคำสั่ง
 ```sh
@@ -33,7 +20,7 @@ $ docker compose up
 ![Alt text](image/image-3.png)
 
 
-# Documentaion Building a Data Lake
+# Documentaion
 
 ## etl_local.ipynb
 import spark เข้ามาใช้ใน python
