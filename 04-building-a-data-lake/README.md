@@ -49,7 +49,7 @@ table = spark.sql("""
         staging_events
 """).show()
 ```
-ได้ผลลัพธ์เหมือนนกัน
+ได้ผลลัพธ์เหมือนกัน
 
 ![Alt text](image/image-4.png)
 
