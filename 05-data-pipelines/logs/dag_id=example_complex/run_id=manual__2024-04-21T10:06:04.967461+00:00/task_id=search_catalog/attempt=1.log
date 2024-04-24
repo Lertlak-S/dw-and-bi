@@ -1,0 +1,17 @@
+[2024-04-21T10:07:04.728+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: example_complex.search_catalog manual__2024-04-21T10:06:04.967461+00:00 [queued]>
+[2024-04-21T10:07:04.753+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: example_complex.search_catalog manual__2024-04-21T10:06:04.967461+00:00 [queued]>
+[2024-04-21T10:07:04.753+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 1
+[2024-04-21T10:07:04.805+0000] {taskinstance.py:2217} INFO - Executing <Task(BashOperator): search_catalog> on 2024-04-21 10:06:04.967461+00:00
+[2024-04-21T10:07:04.879+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'example_complex', 'search_catalog', 'manual__2024-04-21T10:06:04.967461+00:00', '--job-id', '112', '--raw', '--subdir', '/home/***/.local/lib/python3.8/site-packages/***/example_dags/example_complex.py', '--cfg-path', '/tmp/tmpp5vophmb']
+[2024-04-21T10:07:04.883+0000] {standard_task_runner.py:88} INFO - Job 112: Subtask search_catalog
+[2024-04-21T10:07:04.869+0000] {standard_task_runner.py:60} INFO - Started process 43498 to run task
+[2024-04-21T10:07:05.166+0000] {task_command.py:423} INFO - Running <TaskInstance: example_complex.search_catalog manual__2024-04-21T10:06:04.967461+00:00 [running]> on host e2cec6840fb2
+[2024-04-21T10:07:05.548+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='example_complex' AIRFLOW_CTX_TASK_ID='search_catalog' AIRFLOW_CTX_EXECUTION_DATE='2024-04-21T10:06:04.967461+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-04-21T10:06:04.967461+00:00'
+[2024-04-21T10:07:05.550+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-04-21T10:07:05.552+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'echo search_catalog']
+[2024-04-21T10:07:05.682+0000] {subprocess.py:86} INFO - Output:
+[2024-04-21T10:07:05.708+0000] {subprocess.py:93} INFO - search_catalog
+[2024-04-21T10:07:05.710+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2024-04-21T10:07:05.784+0000] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=example_complex, task_id=search_catalog, execution_date=20240421T100604, start_date=20240421T100704, end_date=20240421T100705
+[2024-04-21T10:07:05.959+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-04-21T10:07:06.150+0000] {taskinstance.py:3312} INFO - 1 downstream tasks scheduled from follow-on schedule check

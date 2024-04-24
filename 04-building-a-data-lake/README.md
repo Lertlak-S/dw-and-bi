@@ -20,7 +20,7 @@ $ docker compose up
 ![Alt text](image/image-3.png)
 
 
-# Documentaion
+# Documentation
 
 ## etl_local.ipynb
 import spark เข้ามาใช้ใน python

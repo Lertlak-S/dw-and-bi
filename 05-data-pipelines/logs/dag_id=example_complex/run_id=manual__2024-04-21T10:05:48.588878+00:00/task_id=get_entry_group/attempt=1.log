@@ -1,0 +1,17 @@
+[2024-04-21T10:05:54.263+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: example_complex.get_entry_group manual__2024-04-21T10:05:48.588878+00:00 [queued]>
+[2024-04-21T10:05:54.291+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: example_complex.get_entry_group manual__2024-04-21T10:05:48.588878+00:00 [queued]>
+[2024-04-21T10:05:54.291+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 1
+[2024-04-21T10:05:54.345+0000] {taskinstance.py:2217} INFO - Executing <Task(BashOperator): get_entry_group> on 2024-04-21 10:05:48.588878+00:00
+[2024-04-21T10:05:54.363+0000] {standard_task_runner.py:60} INFO - Started process 42707 to run task
+[2024-04-21T10:05:54.401+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'example_complex', 'get_entry_group', 'manual__2024-04-21T10:05:48.588878+00:00', '--job-id', '58', '--raw', '--subdir', '/home/***/.local/lib/python3.8/site-packages/***/example_dags/example_complex.py', '--cfg-path', '/tmp/tmphzmc3okv']
+[2024-04-21T10:05:54.415+0000] {standard_task_runner.py:88} INFO - Job 58: Subtask get_entry_group
+[2024-04-21T10:05:54.588+0000] {task_command.py:423} INFO - Running <TaskInstance: example_complex.get_entry_group manual__2024-04-21T10:05:48.588878+00:00 [running]> on host e2cec6840fb2
+[2024-04-21T10:05:54.783+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='example_complex' AIRFLOW_CTX_TASK_ID='get_entry_group' AIRFLOW_CTX_EXECUTION_DATE='2024-04-21T10:05:48.588878+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-04-21T10:05:48.588878+00:00'
+[2024-04-21T10:05:54.785+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-04-21T10:05:54.792+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'echo get_entry_group']
+[2024-04-21T10:05:54.816+0000] {subprocess.py:86} INFO - Output:
+[2024-04-21T10:05:54.821+0000] {subprocess.py:93} INFO - get_entry_group
+[2024-04-21T10:05:54.822+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2024-04-21T10:05:54.875+0000] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=example_complex, task_id=get_entry_group, execution_date=20240421T100548, start_date=20240421T100554, end_date=20240421T100554
+[2024-04-21T10:05:54.967+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-04-21T10:05:55.020+0000] {taskinstance.py:3312} INFO - 1 downstream tasks scheduled from follow-on schedule check
