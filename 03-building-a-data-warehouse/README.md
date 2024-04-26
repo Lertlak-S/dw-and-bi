@@ -15,15 +15,15 @@
 # Instruction
 ### เข้าไปที่ folder ของไฟล์ด้วยคำสั่ง
 ```sh
-$ cd 03-building-a-data-warehouse
+cd 03-building-a-data-warehouse
 ```
 
 ### สร้าง Environment
 ```sh
-$ python -m venv env
+python -m venv env
 ```
 ```sh
-$ source env/bin/activate
+source env/bin/activate
 ```
 
 ### เตรียมไฟล์สำหรับ Install Library ใน folder 03-building-a-data-warehouse ชื่อ requirements.txt
@@ -55,10 +55,10 @@ urllib3==2.2.1
 
 ### Install Library ที่เกี่ยวข้อง
 ```sh
-$ pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ### ทำ ETL จาก Data Source ไฟล์ JSON ขึ้น Cloud Data Warehouse (Google BigQuery)
 ```sh
-$ python etl.py
+python etl.py
 ```

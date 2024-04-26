@@ -30,23 +30,23 @@
 ### เข้าไปที่ folder ของไฟล์ด้วยคำสั่ง
 
 ```sh
-$ cd 01-data-modeling-i
+cd 01-data-modeling-i
 ```
 
 ### Install psycopg2 package
 
 ```sh
-$ pip install psycopg2
+pip install psycopg2
 ```
 
 ### Running Postgres
 
 ```sh
-$ docker-compose up
+docker-compose up
 ```
 
 ### Running Python Scripts
 ```sh
-$ python create_tables.py
-$ python etl.py
+python create_tables.py
+python etl.py
 ```

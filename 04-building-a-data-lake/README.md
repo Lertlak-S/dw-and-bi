@@ -3,12 +3,12 @@
 # Instruction
 ### เข้าไปที่ folder ของไฟล์ด้วยคำสั่ง
 ```sh
-$ cd 04-building-a-data-lake
+cd 04-building-a-data-lake
 ```
 
 ### เชื่อมต่อกับ Notebook ที่ติดตั้ง pyspark ไว้ จาก docker-compose.yml ด้วยคำสั่ง
 ```sh
-$ docker compose up
+docker compose up
 ```
 
 ### เข้าไปที่ jupyter server จาก port: 8888 (ที่ลูกโลก)

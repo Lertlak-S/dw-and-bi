@@ -41,28 +41,28 @@ select * from github_events.events;
 ### เข้าไปที่ folder ของไฟล์ด้วยคำสั่ง
 
 ```sh
-$ cd 02-data-modeling-ii
+cd 02-data-modeling-ii
 ```
 
 ### Install cqlsh package
 
 ```sh
-$ pip install cqlsh
+pip install cqlsh
 ```
 
 ### Running Cassandra
 
 ```sh
-$ docker-compose up
+docker-compose up
 ```
 
 ### Running Python Scripts
 New Terminal and run:
 ```sh
-$ python etl.py
+python etl.py
 ```
 
 ### Cassandra command-line interface
 ```sh
-$ cqlsh
+cqlsh
 ```

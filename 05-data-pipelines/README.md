@@ -3,12 +3,12 @@
 # Instruction
 ### เข้าไปที่ folder ของไฟล์ด้วยคำสั่ง
 ```sh
-$ cd 05-data-pipelines
+cd 05-data-pipelines
 ```
 
 ### เชื่อมต่อกับ Apache Airflow โดยเริ่มจากการ run คำสั่ง
 ```sh
-$ docker compose up
+docker compose up
 ```
 
 ### และไปที่ Tab : TERMINAL ที่ port: 8080 (ที่ลูกโลก)
@@ -21,10 +21,10 @@ $ docker compose up
 
 ### สามารถเรียกดู table ที่สร้างใน github ที่ Tab : terminal ได้ 
 ```sh
-$ docker compose exec postgres bash
+docker compose exec postgres bash
 ```
 ```sh
-$ psql -d airflow -U airflow
+psql -d airflow -U airflow
 ```
 ### ตัวอย่างการเรียกดู table : actors
 
@@ -35,7 +35,7 @@ airlflow=# select * from actors;
 
 ### ปิดการทำงาน docker
 ```sh
-$ docker compose down
+docker compose down
 ```
 
 
