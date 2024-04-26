@@ -21,10 +21,10 @@ $ docker compose up
 
 ### สามารถเรียกดู table ที่สร้างใน github ที่ Tab : terminal ได้ 
 ```sh
-docker compose exec postgres bash
+$ docker compose exec postgres bash
 ```
 ```sh
-psql -d airflow -U airflow
+$ psql -d airflow -U airflow
 ```
 ### ตัวอย่างการเรียกดู table : actors
 
@@ -32,6 +32,11 @@ psql -d airflow -U airflow
 airlflow=# select * from actors;
 ```
 ![Alt text](image/image-8.png)
+
+### ปิดการทำงาน docker
+```sh
+$ docker compose down
+```
 
 
 # Documentation
