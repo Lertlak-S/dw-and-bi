@@ -1,0 +1,12 @@
+ds525_capstone:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: ds525-capstone-422206
+      dataset: capstone_aqgs
+      threads: 1
+      keyfile: /workspaces/dw-and-bi/08-capstone-project/key/ds525-capstone-422206-77d8ee9a2ccd.json
+      location: US
+

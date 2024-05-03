@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: capstone_aqgs
+    database: bigquery
+    schema: capstone_aqgs
+    tables:
+      - name: station
+      - name: pm25_trans
