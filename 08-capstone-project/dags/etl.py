@@ -16,7 +16,8 @@ from airflow.providers.google.cloud.operators.bigquery import BigQueryInsertJobO
 from airflow.providers.google.cloud.operators.bigquery import BigQueryExecuteQueryOperator
 # from airflow.providers.google.cloud.hooks.bigquery import BigQueryHook
 # from airflow.providers.postgres.hooks.postgres import PostgresHook
-from bs4 import BeautifulSoup 
+from bs4 import BeautifulSoup
+from urllib.parse import urlparse
 from airflow.utils import timezone
 from datetime import datetime
 from typing import List
@@ -40,44 +41,44 @@ from typing import List
 
 
 def _get_files():
-    url = "https://opendata.onde.go.th/dataset/14-pm-25"
+    url = 'https://opendata.onde.go.th/dataset/14-pm-25'
     links = []
     req = requests.get(url, verify=False)
-    req.encoding = "utf-8"
+    req.encoding = 'utf-8'
     soup = BeautifulSoup(req.text, 'html.parser')
     #print(soup.prettify())
-    og = soup.find("meta",  property="og:url")
+    og = soup.find('meta', property='og:url')
     base = urlparse(url)
     for link in soup.find_all('a'):
         current_link = link.get('href')
         if str(current_link).endswith('csv'):
             links.append(current_link)
     for link in links:
-        names = link.split("/")[-1]
+        names = link.split('/')[-1]
         names = names.strip()
-        name = names.replace("pm_data_hourly-","")
-        if name != "data_dictionary.csv":
+        name = names.replace('pm_data_hourly-', '')
+        if name != 'data_dictionary.csv':
             req = requests.get(link, verify=False)
             url_content = req.content
-            file_p = "/opt/airflow/dags/data/" + name
-            csv_file = open(file_p, "wb")
+            file_p = '/opt/airflow/dags/data/' + name
+            csv_file = open(file_p, 'wb')
             csv_file.write(url_content)
             csv_file.close()
 
 
 with DAG(
-    "etl",
+    'etl',
     start_date=timezone.datetime(2024, 5, 3),
-    schedule="@daily",
-    tags=["swu"],
+    schedule='@hourly',
+    tags=['swu'],
 ) as dag:
 
     start = EmptyOperator(
-        task_id="start",
+        task_id='start',
         dag=dag,
     )
 
-    empty = EmptyOperator(task_id="empty")
+    empty = EmptyOperator(task_id='empty')
 
     get_files = PythonOperator(
         task_id="get_files",
@@ -87,10 +88,10 @@ with DAG(
         # },
     )
 
-    data_folder = "/opt/airflow/dags/data/" # local dir
-    gcs_path = "pm25/"
-    bucket_name = "swu-ds-525" # bucket name on GCS
-    csv_files = [file for file in os.listdir(data_folder) if file.endswith(".csv")]
+    data_folder = '/opt/airflow/dags/data/' # local dir
+    gcs_path = 'pm25/'
+    bucket_name = 'swu-ds-525' # bucket name on GCS
+    csv_files = [file for file in os.listdir(data_folder) if file.endswith('.csv')]
     path = []
     for csv_file in csv_files:
         path.append(data_folder + csv_file)
@@ -156,6 +157,9 @@ with DAG(
         UPDATE `capstone_aqgs.pm25_trans`
         SET pollutant = 'pm25'
         WHERE pollutant IS null;
+
+        ALTER TABLE capstone_aqgs.pm25_trans
+        PARTITION BY date;
     """
 
     manage_table = BigQueryExecuteQueryOperator(
@@ -165,6 +169,6 @@ with DAG(
         gcp_conn_id='my_gcp_conn',
     )
 
-    end = EmptyOperator(task_id="end")
+    end = EmptyOperator(task_id='end')
 
     start >> get_files >> [upload_file_gcs, create_dataset] >> empty >> [gcs_to_bq_pm25_trans, gcs_to_bq_station] >> manage_table >> end

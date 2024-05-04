@@ -130,3 +130,284 @@ Happy modeling!
 [0m07:25:08.201286 [debug] [MainThread]: Command `dbt init` succeeded at 07:25:08.201031 after 900.18 seconds
 [0m07:25:08.202033 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x788414b8ef50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x788404734ca0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x788412e09720>]}
 [0m07:25:08.203037 [debug] [MainThread]: Flushing usage events
+[0m06:38:22.821784 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76ddab396ef0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76ddabc0b100>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76dda98002e0>]}
+
+
+============================== 06:38:22.833371 | aaf649c5-54a3-4e46-ae18-7a75171691a8 ==============================
+[0m06:38:22.833371 [info ] [MainThread]: Running with dbt=1.7.14
+[0m06:38:22.837196 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'version_check': 'True', 'log_path': 'logs', 'fail_fast': 'False', 'profiles_dir': '/home/codespace/.dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt debug', 'log_format': 'default', 'introspect': 'True', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m06:38:22.838763 [info ] [MainThread]: dbt version: 1.7.14
+[0m06:38:22.839865 [info ] [MainThread]: python version: 3.10.13
+[0m06:38:22.841042 [info ] [MainThread]: python path: /workspaces/dw-and-bi/08-capstone-project/ENV/bin/python
+[0m06:38:22.842104 [info ] [MainThread]: os info: Linux-6.5.0-1018-azure-x86_64-with-glibc2.31
+[0m06:38:27.261443 [info ] [MainThread]: Using profiles dir at /home/codespace/.dbt
+[0m06:38:27.263412 [info ] [MainThread]: Using profiles.yml file at /home/codespace/.dbt/profiles.yml
+[0m06:38:27.264850 [info ] [MainThread]: Using dbt_project.yml file at /workspaces/dw-and-bi/08-capstone-project/dbt_project.yml
+[0m06:38:27.273243 [info ] [MainThread]: adapter type: bigquery
+[0m06:38:27.274883 [info ] [MainThread]: adapter version: 1.7.7
+[0m06:38:27.276334 [info ] [MainThread]: Configuration:
+[0m06:38:27.277731 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m06:38:27.279117 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m06:38:27.280779 [info ] [MainThread]: Required dependencies:
+[0m06:38:27.286071 [debug] [MainThread]: Executing "git --help"
+[0m06:38:27.290849 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m06:38:27.292401 [debug] [MainThread]: STDERR: "b''"
+[0m06:38:27.293685 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m06:38:27.295140 [info ] [MainThread]: Connection:
+[0m06:38:27.296605 [info ] [MainThread]:   method: service-account
+[0m06:38:27.297994 [info ] [MainThread]:   database: ds525-capstone-422206
+[0m06:38:27.299270 [info ] [MainThread]:   execution_project: ds525-capstone-422206
+[0m06:38:27.301015 [info ] [MainThread]:   schema: capstone_apgs
+[0m06:38:27.302600 [info ] [MainThread]:   location: US
+[0m06:38:27.304028 [info ] [MainThread]:   priority: interactive
+[0m06:38:27.305580 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m06:38:27.308367 [info ] [MainThread]:   impersonate_service_account: None
+[0m06:38:27.309860 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m06:38:27.311335 [info ] [MainThread]:   job_retries: 1
+[0m06:38:27.312974 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m06:38:27.314652 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m06:38:27.316055 [info ] [MainThread]:   timeout_seconds: 300
+[0m06:38:27.317723 [info ] [MainThread]:   client_id: None
+[0m06:38:27.319612 [info ] [MainThread]:   token_uri: None
+[0m06:38:27.321065 [info ] [MainThread]:   dataproc_region: None
+[0m06:38:27.322650 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m06:38:27.324329 [info ] [MainThread]:   gcs_bucket: None
+[0m06:38:27.326037 [info ] [MainThread]:   dataproc_batch: None
+[0m06:38:27.328143 [info ] [MainThread]: Registered adapter: bigquery=1.7.7
+[0m06:38:27.330003 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m06:38:27.331350 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m06:38:27.333480 [debug] [MainThread]: BigQuery adapter: Got an error when attempting to create a bigquery client: '[Errno 2] No such file or directory: '/worksapces/dw-and-bi/08-capstone-project/key/ds525-capstone-422206-77d8ee9a2ccd.json''
+[0m06:38:27.335158 [info ] [MainThread]:   Connection test: [[31mERROR[0m]
+
+[0m06:38:27.336686 [info ] [MainThread]: [31m2 checks failed:[0m
+[0m06:38:27.339734 [info ] [MainThread]: Project loading failed for the following reason:
+ project path </workspaces/dw-and-bi/08-capstone-project/dbt_project.yml> not found
+
+[0m06:38:27.341596 [info ] [MainThread]: dbt was unable to connect to the specified database.
+The database returned the following error:
+
+  >Database Error
+  [Errno 2] No such file or directory: '/worksapces/dw-and-bi/08-capstone-project/key/ds525-capstone-422206-77d8ee9a2ccd.json'
+
+Check your database credentials and try again. For more information, visit:
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m06:38:27.355242 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_wall_clock_time": 4.655606, "process_user_time": 4.427564, "process_kernel_time": 0.443956, "process_mem_max_rss": "194928", "process_in_blocks": "190456", "process_out_blocks": "24", "command_success": false}
+[0m06:38:27.356776 [debug] [MainThread]: Command `dbt debug` failed at 06:38:27.356391 after 4.66 seconds
+[0m06:38:27.357877 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m06:38:27.359217 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76ddab396ef0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76dd96c58280>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76dd96c5b790>]}
+[0m06:38:27.360464 [debug] [MainThread]: Flushing usage events
+[0m06:40:22.105046 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7854c9972f20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7854ca1ef0a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7854ca1648b0>]}
+
+
+============================== 06:40:22.112400 | e0dc47eb-953b-4863-8ad8-19351a9e6961 ==============================
+[0m06:40:22.112400 [info ] [MainThread]: Running with dbt=1.7.14
+[0m06:40:22.117830 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/codespace/.dbt', 'version_check': 'True', 'fail_fast': 'False', 'log_path': 'logs', 'debug': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt init', 'introspect': 'True', 'static_parser': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m06:41:11.718336 [info ] [MainThread]: A project called ds525_capstone already exists here.
+[0m06:41:11.720286 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 49.724422, "process_user_time": 3.642464, "process_kernel_time": 0.143285, "process_mem_max_rss": "88092", "process_out_blocks": "16", "process_in_blocks": "0"}
+[0m06:41:11.721263 [debug] [MainThread]: Command `dbt init` succeeded at 06:41:11.721026 after 49.73 seconds
+[0m06:41:11.721976 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7854c9972f20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7854ca166a10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7854ca1679d0>]}
+[0m06:41:11.722713 [debug] [MainThread]: Flushing usage events
+[0m06:43:39.179403 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d83646aeef0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d8364f2b100>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d8364ea42e0>]}
+
+
+============================== 06:43:39.182866 | 47cb5ce7-d801-46a8-86ac-2e3223c7d2a2 ==============================
+[0m06:43:39.182866 [info ] [MainThread]: Running with dbt=1.7.14
+[0m06:43:39.183862 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'profiles_dir': '/home/codespace/.dbt', 'log_path': 'logs', 'fail_fast': 'False', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'static_parser': 'True', 'invocation_command': 'dbt debug', 'introspect': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m06:43:39.185016 [info ] [MainThread]: dbt version: 1.7.14
+[0m06:43:39.186029 [info ] [MainThread]: python version: 3.10.13
+[0m06:43:39.186762 [info ] [MainThread]: python path: /workspaces/dw-and-bi/08-capstone-project/ENV/bin/python
+[0m06:43:39.187516 [info ] [MainThread]: os info: Linux-6.5.0-1018-azure-x86_64-with-glibc2.31
+[0m06:43:40.092412 [info ] [MainThread]: Using profiles dir at /home/codespace/.dbt
+[0m06:43:40.093716 [info ] [MainThread]: Using profiles.yml file at /home/codespace/.dbt/profiles.yml
+[0m06:43:40.094548 [info ] [MainThread]: Using dbt_project.yml file at /workspaces/dw-and-bi/08-capstone-project/dbt_project.yml
+[0m06:43:40.095611 [info ] [MainThread]: adapter type: bigquery
+[0m06:43:40.096370 [info ] [MainThread]: adapter version: 1.7.7
+[0m06:43:40.097182 [info ] [MainThread]: Configuration:
+[0m06:43:40.097915 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m06:43:40.098779 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m06:43:40.099649 [info ] [MainThread]: Required dependencies:
+[0m06:43:40.100632 [debug] [MainThread]: Executing "git --help"
+[0m06:43:40.105092 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m06:43:40.105936 [debug] [MainThread]: STDERR: "b''"
+[0m06:43:40.107016 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m06:43:40.107879 [info ] [MainThread]: Connection:
+[0m06:43:40.108686 [info ] [MainThread]:   method: service-account
+[0m06:43:40.109419 [info ] [MainThread]:   database: ds525-capstone-422206
+[0m06:43:40.110149 [info ] [MainThread]:   execution_project: ds525-capstone-422206
+[0m06:43:40.110877 [info ] [MainThread]:   schema: capstone_apgs
+[0m06:43:40.111728 [info ] [MainThread]:   location: US
+[0m06:43:40.112790 [info ] [MainThread]:   priority: interactive
+[0m06:43:40.113890 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m06:43:40.115016 [info ] [MainThread]:   impersonate_service_account: None
+[0m06:43:40.116088 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m06:43:40.116953 [info ] [MainThread]:   job_retries: 1
+[0m06:43:40.117950 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m06:43:40.118994 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m06:43:40.119728 [info ] [MainThread]:   timeout_seconds: 300
+[0m06:43:40.120473 [info ] [MainThread]:   client_id: None
+[0m06:43:40.121362 [info ] [MainThread]:   token_uri: None
+[0m06:43:40.122168 [info ] [MainThread]:   dataproc_region: None
+[0m06:43:40.123275 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m06:43:40.124211 [info ] [MainThread]:   gcs_bucket: None
+[0m06:43:40.124997 [info ] [MainThread]:   dataproc_batch: None
+[0m06:43:40.125844 [info ] [MainThread]: Registered adapter: bigquery=1.7.7
+[0m06:43:40.126942 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m06:43:40.127765 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m06:43:40.128623 [debug] [MainThread]: BigQuery adapter: Got an error when attempting to create a bigquery client: '[Errno 2] No such file or directory: '/worksapces/dw-and-bi/08-capstone-project/key/ds525-capstone-422206-77d8ee9a2ccd.json''
+[0m06:43:40.129912 [info ] [MainThread]:   Connection test: [[31mERROR[0m]
+
+[0m06:43:40.130688 [info ] [MainThread]: [31m2 checks failed:[0m
+[0m06:43:40.131431 [info ] [MainThread]: Project loading failed for the following reason:
+ project path </workspaces/dw-and-bi/08-capstone-project/dbt_project.yml> not found
+
+[0m06:43:40.132175 [info ] [MainThread]: dbt was unable to connect to the specified database.
+The database returned the following error:
+
+  >Database Error
+  [Errno 2] No such file or directory: '/worksapces/dw-and-bi/08-capstone-project/key/ds525-capstone-422206-77d8ee9a2ccd.json'
+
+Check your database credentials and try again. For more information, visit:
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m06:43:40.133528 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_wall_clock_time": 1.0118138, "process_user_time": 4.698139, "process_kernel_time": 0.314218, "process_mem_max_rss": "194840", "process_out_blocks": "24", "command_success": false, "process_in_blocks": "0"}
+[0m06:43:40.134438 [debug] [MainThread]: Command `dbt debug` failed at 06:43:40.134189 after 1.01 seconds
+[0m06:43:40.135112 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m06:43:40.135932 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d83646aeef0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d8364ea67d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d8364ea5a80>]}
+[0m06:43:40.136716 [debug] [MainThread]: Flushing usage events
+[0m06:48:18.548431 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71703ef56ef0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71703f4870d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71703d1cf4f0>]}
+
+
+============================== 06:48:18.554081 | dc8d23cf-5e70-4088-a202-b790c655a18e ==============================
+[0m06:48:18.554081 [info ] [MainThread]: Running with dbt=1.7.14
+[0m06:48:18.555965 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/codespace/.dbt', 'fail_fast': 'False', 'warn_error': 'None', 'log_path': '/workspaces/dw-and-bi/08-capstone-project/logs', 'debug': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'invocation_command': 'dbt debug', 'log_format': 'default', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m06:48:18.557730 [info ] [MainThread]: dbt version: 1.7.14
+[0m06:48:18.558862 [info ] [MainThread]: python version: 3.10.13
+[0m06:48:18.560006 [info ] [MainThread]: python path: /workspaces/dw-and-bi/08-capstone-project/ENV/bin/python
+[0m06:48:18.561321 [info ] [MainThread]: os info: Linux-6.5.0-1018-azure-x86_64-with-glibc2.31
+[0m06:48:19.740997 [info ] [MainThread]: Using profiles dir at /home/codespace/.dbt
+[0m06:48:19.742131 [info ] [MainThread]: Using profiles.yml file at /home/codespace/.dbt/profiles.yml
+[0m06:48:19.742954 [info ] [MainThread]: Using dbt_project.yml file at /workspaces/dw-and-bi/08-capstone-project/dbt_project.yml
+[0m06:48:19.743939 [info ] [MainThread]: adapter type: bigquery
+[0m06:48:19.744739 [info ] [MainThread]: adapter version: 1.7.7
+[0m06:48:19.842593 [info ] [MainThread]: Configuration:
+[0m06:48:19.843664 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m06:48:19.844507 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m06:48:19.845322 [info ] [MainThread]: Required dependencies:
+[0m06:48:19.846104 [debug] [MainThread]: Executing "git --help"
+[0m06:48:19.849604 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m06:48:19.851040 [debug] [MainThread]: STDERR: "b''"
+[0m06:48:19.851818 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m06:48:19.852892 [info ] [MainThread]: Connection:
+[0m06:48:19.853761 [info ] [MainThread]:   method: service-account
+[0m06:48:19.854827 [info ] [MainThread]:   database: ds525-capstone-422206
+[0m06:48:19.855760 [info ] [MainThread]:   execution_project: ds525-capstone-422206
+[0m06:48:19.857303 [info ] [MainThread]:   schema: capstone_apgs
+[0m06:48:19.858260 [info ] [MainThread]:   location: US
+[0m06:48:19.859800 [info ] [MainThread]:   priority: interactive
+[0m06:48:19.860665 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m06:48:19.861416 [info ] [MainThread]:   impersonate_service_account: None
+[0m06:48:19.862145 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m06:48:19.862868 [info ] [MainThread]:   job_retries: 1
+[0m06:48:19.863705 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m06:48:19.864511 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m06:48:19.865815 [info ] [MainThread]:   timeout_seconds: 300
+[0m06:48:19.866584 [info ] [MainThread]:   client_id: None
+[0m06:48:19.867312 [info ] [MainThread]:   token_uri: None
+[0m06:48:19.868032 [info ] [MainThread]:   dataproc_region: None
+[0m06:48:19.868789 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m06:48:19.869629 [info ] [MainThread]:   gcs_bucket: None
+[0m06:48:19.870509 [info ] [MainThread]:   dataproc_batch: None
+[0m06:48:19.871743 [info ] [MainThread]: Registered adapter: bigquery=1.7.7
+[0m06:48:19.872816 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m06:48:19.873496 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m06:48:19.874231 [debug] [MainThread]: BigQuery adapter: Got an error when attempting to create a bigquery client: '[Errno 2] No such file or directory: '/worksapces/dw-and-bi/08-capstone-project/key/ds525-capstone-422206-77d8ee9a2ccd.json''
+[0m06:48:19.875052 [info ] [MainThread]:   Connection test: [[31mERROR[0m]
+
+[0m06:48:19.875917 [info ] [MainThread]: [31m1 check failed:[0m
+[0m06:48:19.876975 [info ] [MainThread]: dbt was unable to connect to the specified database.
+The database returned the following error:
+
+  >Database Error
+  [Errno 2] No such file or directory: '/worksapces/dw-and-bi/08-capstone-project/key/ds525-capstone-422206-77d8ee9a2ccd.json'
+
+Check your database credentials and try again. For more information, visit:
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m06:48:19.878698 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_wall_clock_time": 1.4246798, "process_user_time": 4.288009, "process_kernel_time": 0.257046, "process_mem_max_rss": "196308", "process_out_blocks": "24", "command_success": false, "process_in_blocks": "0"}
+[0m06:48:19.879634 [debug] [MainThread]: Command `dbt debug` failed at 06:48:19.879389 after 1.43 seconds
+[0m06:48:19.880324 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m06:48:19.881209 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71703ef56ef0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71702a64cbe0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71703d2016f0>]}
+[0m06:48:19.882155 [debug] [MainThread]: Flushing usage events
+[0m06:49:34.162021 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e07759deef0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e0775f0f0d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e0773c574f0>]}
+
+
+============================== 06:49:34.165485 | 2a6b2bf3-fad2-497f-8816-ff37fcee8462 ==============================
+[0m06:49:34.165485 [info ] [MainThread]: Running with dbt=1.7.14
+[0m06:49:34.166485 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/codespace/.dbt', 'fail_fast': 'False', 'debug': 'False', 'log_path': '/workspaces/dw-and-bi/08-capstone-project/logs', 'warn_error': 'None', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt debug', 'introspect': 'True', 'log_format': 'default', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m06:49:34.167277 [info ] [MainThread]: dbt version: 1.7.14
+[0m06:49:34.168012 [info ] [MainThread]: python version: 3.10.13
+[0m06:49:34.168758 [info ] [MainThread]: python path: /workspaces/dw-and-bi/08-capstone-project/ENV/bin/python
+[0m06:49:34.169484 [info ] [MainThread]: os info: Linux-6.5.0-1018-azure-x86_64-with-glibc2.31
+[0m06:49:35.706576 [info ] [MainThread]: Using profiles dir at /home/codespace/.dbt
+[0m06:49:35.708170 [info ] [MainThread]: Using profiles.yml file at /home/codespace/.dbt/profiles.yml
+[0m06:49:35.709426 [info ] [MainThread]: Using dbt_project.yml file at /workspaces/dw-and-bi/08-capstone-project/dbt_project.yml
+[0m06:49:35.710942 [info ] [MainThread]: adapter type: bigquery
+[0m06:49:35.712153 [info ] [MainThread]: adapter version: 1.7.7
+[0m06:49:35.954837 [info ] [MainThread]: Configuration:
+[0m06:49:35.956380 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m06:49:35.957719 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m06:49:35.959029 [info ] [MainThread]: Required dependencies:
+[0m06:49:35.960369 [debug] [MainThread]: Executing "git --help"
+[0m06:49:35.966042 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m06:49:35.967422 [debug] [MainThread]: STDERR: "b''"
+[0m06:49:35.968725 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m06:49:35.970059 [info ] [MainThread]: Connection:
+[0m06:49:35.971344 [info ] [MainThread]:   method: service-account
+[0m06:49:35.972483 [info ] [MainThread]:   database: ds525-capstone-422206
+[0m06:49:35.973683 [info ] [MainThread]:   execution_project: ds525-capstone-422206
+[0m06:49:35.975060 [info ] [MainThread]:   schema: capstone_apgs
+[0m06:49:35.976902 [info ] [MainThread]:   location: US
+[0m06:49:35.978154 [info ] [MainThread]:   priority: interactive
+[0m06:49:35.979582 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m06:49:35.981300 [info ] [MainThread]:   impersonate_service_account: None
+[0m06:49:35.982447 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m06:49:35.983643 [info ] [MainThread]:   job_retries: 1
+[0m06:49:35.984967 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m06:49:35.986359 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m06:49:35.987817 [info ] [MainThread]:   timeout_seconds: 300
+[0m06:49:35.989540 [info ] [MainThread]:   client_id: None
+[0m06:49:35.990809 [info ] [MainThread]:   token_uri: None
+[0m06:49:35.992092 [info ] [MainThread]:   dataproc_region: None
+[0m06:49:35.993538 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m06:49:35.995201 [info ] [MainThread]:   gcs_bucket: None
+[0m06:49:35.996498 [info ] [MainThread]:   dataproc_batch: None
+[0m06:49:35.998001 [info ] [MainThread]: Registered adapter: bigquery=1.7.7
+[0m06:49:36.000202 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m06:49:36.001463 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m06:49:36.002815 [debug] [MainThread]: BigQuery adapter: Got an error when attempting to create a bigquery client: '[Errno 2] No such file or directory: '/worksapces/dw-and-bi/08-capstone-project/key/ds525-capstone-422206-77d8ee9a2ccd.json''
+[0m06:49:36.004525 [info ] [MainThread]:   Connection test: [[31mERROR[0m]
+
+[0m06:49:36.006292 [info ] [MainThread]: [31m1 check failed:[0m
+[0m06:49:36.007863 [info ] [MainThread]: dbt was unable to connect to the specified database.
+The database returned the following error:
+
+  >Database Error
+  [Errno 2] No such file or directory: '/worksapces/dw-and-bi/08-capstone-project/key/ds525-capstone-422206-77d8ee9a2ccd.json'
+
+Check your database credentials and try again. For more information, visit:
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m06:49:36.011644 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_wall_clock_time": 1.9287702, "process_user_time": 5.103528, "process_kernel_time": 0.259884, "process_mem_max_rss": "196312", "process_out_blocks": "24", "command_success": false, "process_in_blocks": "0"}
+[0m06:49:36.013645 [debug] [MainThread]: Command `dbt debug` failed at 06:49:36.013212 after 1.93 seconds
+[0m06:49:36.014959 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m06:49:36.016241 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e07759deef0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e0775f0f0d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e0773c574f0>]}
+[0m06:49:36.017672 [debug] [MainThread]: Flushing usage events
