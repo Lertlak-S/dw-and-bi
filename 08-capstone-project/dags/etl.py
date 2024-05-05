@@ -189,7 +189,9 @@ with DAG(
 
         INSERT INTO `capstone_aqgs.who_guidline` (pollutant, avgtime, aqgs, date)
         VALUES ('pm25', '24-hour', 5, '2021-01-01'),
-               ('pm25', 'Annual', 15, '2021-01-01');
+               ('pm25', 'Annual', 15, '2021-01-01'),
+               ('pm25', '24-hour',10, '2005-01-01'),
+               ('pm25', 'Annual', 25, '2005-01-01');
     """
 
     manage_table = BigQueryExecuteQueryOperator(
