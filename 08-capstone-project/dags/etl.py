@@ -3,44 +3,28 @@ import glob
 import os
 import requests
 import logging
+import pickle
+import pandas as pd
 
 from airflow import DAG
+from airflow.utils import timezone
 from airflow.operators.empty import EmptyOperator
 from airflow.operators.python import PythonOperator
 from airflow.providers.google.cloud.transfers.gcs_to_bigquery import GCSToBigQueryOperator
 from airflow.providers.google.cloud.transfers.local_to_gcs import LocalFilesystemToGCSOperator
 from airflow.providers.google.cloud.operators.bigquery import BigQueryCreateEmptyDatasetOperator
-# from airflow.contrib.operators.bigquery_operator import BigQueryOperator
-# from airflow.providers.google.cloud.operators.bigquery import BigQueryOperator
 from airflow.providers.google.cloud.operators.bigquery import BigQueryInsertJobOperator
 from airflow.providers.google.cloud.operators.bigquery import BigQueryExecuteQueryOperator
-# from airflow.providers.google.cloud.hooks.bigquery import BigQueryHook
-# from airflow.providers.postgres.hooks.postgres import PostgresHook
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
-from airflow.utils import timezone
-from datetime import datetime
 from typing import List
 
 
-# def _get_files(filepath):
-#     """
-#     Description: This function is responsible for listing the files in a directory
-#     """
-
-#     all_files = []
-#     for root, dirs, files in os.walk(filepath):
-#         files = glob.glob(os.path.join(root, "*.csv"))
-#         for f in files:
-#             all_files.append(os.path.abspath(f))
-
-#     num_files = len(all_files)
-#     print(f"{num_files} files found in {filepath}")
-
-#     return all_files
-
+data_folder = '/opt/airflow/dags/data/' # local dir
+clean_folder = data_folder + 'cleaned' 
 
 def _get_files():
+    exit_file_name = os.listdir(data_folder)
     url = 'https://opendata.onde.go.th/dataset/14-pm-25'
     links = []
     req = requests.get(url, verify=False)
@@ -57,109 +41,155 @@ def _get_files():
         names = link.split('/')[-1]
         names = names.strip()
         name = names.replace('pm_data_hourly-', '')
-        if name != 'data_dictionary.csv':
+        if (name != 'data_dictionary.csv') & (name not in exit_file_name):
             req = requests.get(link, verify=False)
             url_content = req.content
-            file_p = '/opt/airflow/dags/data/' + name
+            file_p = data_folder + name
             csv_file = open(file_p, 'wb')
             csv_file.write(url_content)
             csv_file.close()
 
 
+def _clean_df():
+    if not os.path.exists(clean_folder):
+        os.makedirs(clean_folder)
+    column_names = ['station_id', 'name_th', 'name_en', 'area_th', 'area_en',
+       'station_type', 'lat', 'long', 'date', 'time', 'pm25_color_id',
+       'pm25_aqi', 'pm25_value', 'province', 'datetime']
+    df_all = pd.DataFrame(columns=column_names)
+    for name in os.listdir(data_folder):
+        if name.endswith('.csv'):
+            path = data_folder + name
+            df = pd.read_csv(path)
+            area_en = []
+            for area in df['area_en']:
+                area = area.strip().split(',')[-1].strip()
+                area_en.append(area)
+            df['province'] = area_en
+            df['datetime'] = pd.to_datetime(df['date'] + ' ' + df['time'])
+            df_all = pd.concat([df_all, df], axis=0, ignore_index=True)
+            df_all.drop_duplicates(inplace=True)
+            df_all.to_csv(clean_folder + '/all_data.csv')
+
+
 with DAG(
     'etl',
-    start_date=timezone.datetime(2024, 5, 3),
-    schedule='@hourly',
-    tags=['swu'],
+    start_date = timezone.datetime(2024, 5, 3),
+    schedule = '@hourly',
+    tags = ['swu'],
 ) as dag:
 
     start = EmptyOperator(
-        task_id='start',
-        dag=dag,
+        task_id = 'start',
+        dag = dag,
     )
 
     empty = EmptyOperator(task_id='empty')
 
     get_files = PythonOperator(
-        task_id="get_files",
-        python_callable=_get_files,
-        # op_kwargs={
-        #     "filepath":"/opt/airflow/dags/data",
-        # },
+        task_id = 'get_files',
+        python_callable = _get_files,
+
     )
 
-    data_folder = '/opt/airflow/dags/data/' # local dir
-    gcs_path = 'pm25/'
+    gcs_path = 'pm25_raw/'
     bucket_name = 'swu-ds-525' # bucket name on GCS
     csv_files = [file for file in os.listdir(data_folder) if file.endswith('.csv')]
     path = []
     for csv_file in csv_files:
         path.append(data_folder + csv_file)
 
-    upload_file_gcs = LocalFilesystemToGCSOperator(
-        task_id='upload_file_gcs',
-        src=path,
-        dst=gcs_path,  # Destination file in the bucket
-        bucket=bucket_name,  # Bucket name
-        gcp_conn_id='my_gcp_conn',  # Google Cloud connection id
-        mime_type='text/csv'
+    upload_to_gcs = LocalFilesystemToGCSOperator(
+        task_id = 'upload_to_gcs',
+        src = path,
+        dst = gcs_path,  # Destination file in the bucket
+        bucket = bucket_name,  # Bucket name
+        gcp_conn_id = 'my_gcp_conn',  # Google Cloud connection id
+        mime_type = 'text/csv'
     )
 
+    clean_df = PythonOperator(
+        task_id = 'clean_df',
+        python_callable = _clean_df,
+    ) 
+
+    upload_clean_to_gcs = LocalFilesystemToGCSOperator(
+        task_id = 'upload_clean_to_gcs',
+        src = [clean_folder + '/all_data.csv'],
+        dst = 'pm25_cleaned/',
+        bucket = bucket_name,
+        gcp_conn_id = 'my_gcp_conn',
+        mime_type = 'text/csv',
+    )
+    
     create_dataset = BigQueryCreateEmptyDatasetOperator(
-        task_id='create_dataset',
-        dataset_id='capstone_aqgs',
-        gcp_conn_id='my_gcp_conn',
+        task_id = 'create_dataset',
+        dataset_id = 'capstone_aqgs',
+        gcp_conn_id = 'my_gcp_conn',
     )
 
     gcs_to_bq_pm25_trans = GCSToBigQueryOperator(
-        task_id='gcs_to_bq_pm25_trans',
-        bucket=bucket_name,
-        source_objects=['pm25/*.csv'],
-        destination_project_dataset_table='capstone_aqgs.pm25_trans',
-        create_disposition='CREATE_IF_NEEDED',
-        write_disposition='WRITE_TRUNCATE',
-        gcp_conn_id='my_gcp_conn',
-    )
-
-    gcs_to_bq_station = GCSToBigQueryOperator(
-        task_id='gcs_to_bq_station',
-        bucket=bucket_name,
-        source_objects=['pm25/*.csv'],
-        destination_project_dataset_table='capstone_aqgs.station',
-        schema_fields=[
-            {'name': 'station_id'  , 'type': 'STRING'},
-            {'name': 'name_th'     , 'type': 'STRING'},
-            {'name': 'name_en'     , 'type': 'STRING'},
-            {'name': 'area_th'     , 'type': 'STRING'},
-            {'name': 'area_en'     , 'type': 'STRING'},
-            {'name': 'station_type', 'type': 'STRING'},
-            {'name': 'lat'         , 'type': 'FLOAT'},
-            {'name': 'long'        , 'type': 'FLOAT'},
-        ],
-        create_disposition='CREATE_IF_NEEDED',
-        write_disposition='WRITE_TRUNCATE',
-        gcp_conn_id='my_gcp_conn',
-        skip_leading_rows=1,
+        task_id = 'gcs_to_bq_pm25_trans',
+        bucket = bucket_name,
+        source_objects = ['pm25_cleaned/all_data.csv'],
+        destination_project_dataset_table = 'capstone_aqgs.pm25_transaction',
+        create_disposition = 'CREATE_IF_NEEDED',
+        write_disposition = 'WRITE_TRUNCATE',
+        gcp_conn_id = 'my_gcp_conn',
     )
 
     manage_table_sql = f"""
-        ALTER TABLE `capstone_aqgs.pm25_trans`
-        DROP COLUMN name_th,
-        DROP COLUMN name_en,
-        DROP COLUMN area_th,
-        DROP COLUMN area_en,
-        DROP COLUMN station_type,
-        DROP COLUMN lat,
-        DROP COLUMN long,
-        
+        ALTER TABLE `capstone_aqgs.pm25_transaction`
+        DROP COLUMN int64_field_0,
         ADD COLUMN pollutant STRING;
 
-        UPDATE `capstone_aqgs.pm25_trans`
+
+        UPDATE `capstone_aqgs.pm25_transaction`
         SET pollutant = 'pm25'
         WHERE pollutant IS null;
 
-        ALTER TABLE capstone_aqgs.pm25_trans
-        PARTITION BY date;
+
+        CREATE OR REPLACE TABLE `capstone_aqgs.station`
+        AS (
+            SELECT 
+                station_id, 
+                name_th, name_en, 
+                area_th, area_en, 
+                province, 
+                station_type, 
+                lat, long
+            FROM `capstone_aqgs.pm25_transaction`
+            GROUP BY station_id, name_th, name_en, area_th, area_en, province, station_type, lat, long
+        );
+
+
+        CREATE OR REPLACE TABLE `capstone_aqgs.pm25_trans`
+        PARTITION BY date
+        AS (
+            SELECT 
+                station_id, 
+                date, time, datetime, 
+                pm25_color_id, 
+                pm25_aqi, 
+                pm25_value,
+                pollutant
+            FROM `capstone_aqgs.pm25_transaction`
+            GROUP BY station_id, date, time, datetime, pm25_color_id, pm25_aqi, pm25_value, pollutant
+        );
+
+        DROP TABLE `capstone_aqgs.pm25_transaction`;
+
+
+        CREATE OR REPLACE TABLE `capstone_aqgs.who_guidline` (
+            pollutant STRING,
+            avgtime STRING,
+            aqgs INTEGER,
+            date DATE
+        );
+
+        INSERT INTO `capstone_aqgs.who_guidline` (pollutant, avgtime, aqgs, date)
+        VALUES ('pm25', '24-hour', 5, '2021-01-01'),
+               ('pm25', 'Annual', 15, '2021-01-01');
     """
 
     manage_table = BigQueryExecuteQueryOperator(
@@ -169,6 +199,6 @@ with DAG(
         gcp_conn_id='my_gcp_conn',
     )
 
-    end = EmptyOperator(task_id='end')
+    end = EmptyOperator(task_id = 'end')
 
-    start >> get_files >> [upload_file_gcs, create_dataset] >> empty >> [gcs_to_bq_pm25_trans, gcs_to_bq_station] >> manage_table >> end
+    start >> get_files >> [upload_to_gcs, clean_df] >> empty >> [upload_clean_to_gcs, create_dataset] >> gcs_to_bq_pm25_trans >> manage_table >> end

@@ -9,4 +9,7 @@ ds525_capstone:
       threads: 1
       keyfile: /workspaces/dw-and-bi/08-capstone-project/key/ds525-capstone-422206-77d8ee9a2ccd.json
       location: US
+      priority: None
+      job_execution_timeout_seconds: None
+      timeout_seconds: None
 
