@@ -11,10 +11,10 @@ cd 05-data-pipelines
 docker compose up
 ```
 
-### และไปที่ Tab : TERMINAL ที่ port: 8080 (ที่ลูกโลก)
+### และไปที่ Tab : PORTS ที่ port: 8080 (ที่ลูกโลก)
 ![Alt text](image/image-1.png)
 
-### ดู Username และ Password จากไฟล์ docker-compose.yaml (environment) ที่ใช้ในการ Sign In
+### ดู Username และ Password จากไฟล์ docker-compose.yaml (environment) ที่ใช้ในการ Sign In เข้า Airflow
 ![Alt text](image/image-2.png)
 
 ![Alt text](image/image-3.png)
