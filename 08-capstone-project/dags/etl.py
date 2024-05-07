@@ -19,11 +19,13 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 from typing import List
 
-
-data_folder = '/opt/airflow/dags/data/' # local dir
+data_path = '/opt/airflow/dags/data'
+data_folder = data_path + '/' # local dir
 clean_folder = data_folder + 'cleaned' 
 
 def _get_files():
+    if not os.path.exists(data_path):
+        os.makedirs(data_path)
     exit_file_name = os.listdir(data_folder)
     url = 'https://opendata.onde.go.th/dataset/14-pm-25'
     links = []

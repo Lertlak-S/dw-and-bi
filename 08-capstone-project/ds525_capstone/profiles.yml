@@ -12,4 +12,3 @@ ds525_capstone:
       priority: None
       job_execution_timeout_seconds: None
       timeout_seconds: None
-
