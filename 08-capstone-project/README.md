@@ -70,7 +70,7 @@
 
     ![Alt text](image/206-create-private-key.png)
 
-- Private key file จะถูก download ให้เก็บ file นั้นไว้ เพื่อให้ใน Capstone Project ต่อไป
+- Private key file จะถูก download ให้เก็บ file นั้นไว้ เพื่อใช้ใน Capstone Project ต่อไป
 
 ##
 ## Capstone Project
@@ -176,6 +176,7 @@ docker compose up
 - เมื่อ Airflow ทำงานได้ complete ตาม schedule ที่กำหนดไว้
 
     ![Alt text](image/406-airflow-schedule.png)
+
     ![Alt text](image/407-airflow-flow.png)
 
 
@@ -245,6 +246,10 @@ dbt test
 
 ### 4. ใช้ view ที่สร้างขึ้นด้วย dbt ทำ visualzation ด้วย tableau 
 
-- https://public.tableau.com/views/Book2_v2023_3/Dashboard1?:language=th-TH&publish=yes&:sid=&:display_count=n&:origin=viz_share_link
+- https://public.tableau.com/views/Book2_v2023_3_17150912236310/Dashboard1?:language=th-TH&publish=yes&:sid=&:display_count=n&:origin=viz_share_link
 
     ![Alt text](image/601-visualization.png)
+
+- top n จังหวัดที่มี avg PM2.5 สูงสุด
+- สถานีใน top n จังหวัด ( ดูว่าเพียงพอต่อการเฝ้าระวังหรือไม่ )
+- เช็คค่า PM2.5 กับมาตราฐานที่ WHO กำหนด โดยแสดงในเชิง icon สัญลักษณ์ฃ
