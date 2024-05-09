@@ -1,4 +1,48 @@
 
+# PM2.5 Data Analytic Pipeline
+
+## Project Overview
+โปรเจคนี้เป็นส่วนหนึ่งของรายวิชา DS525 DataWareHouse Master degree in Data Science SWU โดยมุ่งหวังศึกษาการสร้าง Data Pipeline โดยใช้ Model Data Stack ชนิดต่างๆในการสร้าง Data Pipeline แบบ End-to-End โดยคาดหวังว่าจะสามารถสร้าง Data Pipeline แบบ Autonomic ตั้งแต่เริ่มต้นกระบวนการไปจนถึงการสร้าง Dashboard ข้อมูลที่ใช้ในการศึกษาครั้งนี้เป็นชุดข้อมูลเปิดเกี่ยวกับค่าฝุ่น PM2.5 แบบรายชั่วโมง จัดทำขึ้นโดย สำนักงานคณะกรรมการดิจิทัลเพื่อเศรษฐกิจและสังคมแห่งชาติ ในรูปแบบ CSV
+## Problem Statement
+
+ในปัจจุบันฝุ่น PM2.5 หรือฝุ่นที่มีขนาดเล็กมากกว่า 2.5 ไมโครเมตร กลายเป็นปัญหาสุขภาพที่สำคัญประเทศไทย เนื่องจากเป็นปัจจัยเสี่ยงและสาเหตุสำคัญที่ทำให้เกิดมะเร็งปอด และโรคระบบทางเดินหายใจอื่นๆ เช่น หอบหืด ถุงลมโป่งพอง  นอกจากนี้ยังมีการถกเถียงอย่างกว้างขวางว่าจริงๆแล้วค่าฝุ่น pm2.5 ในประเทศไทยนั้นอยู่ในระดับอันตรายจริงหรือไม่ จึงเป็นสาเหตุที่ทางผู้จัดทำจัดทำงานชิ้นนี้เขึ้นเพื่อสร้าง Dashbord ในการติตามค่าฝุ่น PM2.5 ในประเทศไทยและเปรียบเทียบกับเกณฑ์มาตรฐานองค์การอนามัยโลก (who)
+
+## Objectives of the study
+1. สร้าง End-to-End Data Pipeline เพื่อดึงข้อมูลค่าฝุ่น PW2.5 มาแสดงใน Dashboard พร้อมเปรียบเทียบค่าฝุ่นกับคำแนะนำระดับค่าฝุ่นที่ปลอดภัยขององค์การอนามัยโลก(WHO)
+2. จัดอัดดับบริเวณที่มีค่าฝุ่น PM2.5 สูงที่สุด หรือเกินเกณฑ์ที่ WHO กำหนด เพื่อติดตามเฝ้าระวังปัญหาสุขภาพในพื้นที่นั้นๆ  
+
+## Data Stacks & Architecture work flow
+**รูปภาพ model data stack
+### Data Source
+การศึกษาในครั้งนี้ ใช้ชุดข้อมูลเปิดซึ่งเก็บข้อมูลค่าฝุ่น PM2.5 จากสถานีเก็บข้อมูลจำนวน 163 สถานี ซึ่งกระจายอยู่ใน 73 จังหวัดทั่วประเทศไทย โดยข้อมูลอยู่ในรูปของ CSV File 1 ชั่วโมงต่อ 1 File โดยจะอัพโหลดข้อมูลขึ้นเว็บไซต์ทุกๆ 1 ชั่วโมง และจำกัดจำนวน File ที่แสดงในเว็บไซต์ที่ 24 ไฟล์ [Link ข้อมูล](https://www.facebook.com/borntodev)
+
+
+### Orchestration (Airflow)
+ในการศึกษาครั้งนี้เลือกใช้ Apache Airflow ในการทำ Orchestration เนื่องจากเป็น Open Source และเริ่มต้นใช้งานได้ง่ายไม่ยุ่งยาก โดยในการศึกษาครั้งนี้จะทำการติดตั้ง Airflow โดยใช้ Docker ในการติดตั้งเพื่อให้สะดวกต่อการใช้งานและการตั้งค่า [Document For Running Airflow in Docker](https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html)
+
+### Data Lake (GCS)
+ในการศึกษาครั้งนี้ ใช้ Google Cloud Storage ในการสร้าง Data Lake เนื่องจากใช้งานง่าย สะดวกมีการสร้างคำสั่งของการใช้งาน Google Cloud Storage ร่วมกับการสร้าง DAG ของ Airflow เอาไว้แล้ว [Google Cloud Operators with Airflow](https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/index.html) นอกจากนี้เหตุผลสำคัญอีกประการคือ Google Cloud Offer Free trial Account เพื่อใช้ในการศึกษา [Google Free Trial](https://cloud.google.com/free/?utm_source=google&utm_medium=cpc&utm_campaign=japac-TH-all-en-dr-BKWS-all-core-trial-PHR-dr-1605216&utm_content=text-ad-none-none-DEV_c-CRE_667107444154-ADGP_Hybrid+%7C+BKWS+-+BRO+%7C+Txt+-GCP-General-google+cloud+platform-main-KWID_43700077631831033-kwd-361600142637&userloc_1012728-network_g&utm_term=KW_cloud%20google%20platform&gad_source=1&gclid=EAIaIQobChMI6saLtPn8hQMVMKRmAh0LvgmKEAAYASAAEgIsc_D_BwE&gclsrc=aw.ds)
+
+โดยใน Data Lake จะถูกแบ่งออกเป็นส่องส่วนคือ
+1. Raw Files Storage เป็นส่วนที่ใช้สำหรับจัดเก็บ File ดิบซึ่งยังไม่ผ่านการทำความสะอาด โดยจะแยกเก็บเป็นรายชั่วโมง 1 ชั่วโมงต่อ 1 File สาเหตุที่สร้างที่เก็บ Raw File เนื่องจากว่าในอนาคตหากเกิดการเสียหายของข้อมูล หรือต้องการข้อมูลดิบเพื่อไปใช้ประโยชน์อื่นๆ สามารถเรียกใช้ได้อย่างทันทีไม่ต้องเสียเวลาและทรัพยากรในการเก็ฐข้อมูลใหม่
+2. Cleaned Files Storage เป็นส่วนที่นำ Raw ทั้งหมดมาทำความสะอาดและจัดรูปแบบใหม่ให้อยู่ในรูปที่พร้อมใช้งาน และพร้อมนำไปประบวนผลและใช้ประโยชน์ต่อไป
+
+การทำงานของ Data Lake ในส่วนนี้ Airflow จะทำหน้าที่ Run Python Scripts เพื่อดึงข้อมูลจากหน้าเว็บไซต์ทุกๆ 1 ชั่วโมง โมาเก็บใน Local Machine หลังจากนั้นทำการอัพโหลด Raw File ที่ยังไม่ผ่านการทำความสะอาดเข้าไปเก็บไว้บน Data Lake ในส่วนที่ 1 ในขณะเดียวกันก็จะทำการทำความสะอาดข้อมูลทั้งหมดที่ดึงมาได้ และเตรียมให้พร้อมก่อนที่จะนำไปเก็บไว้บน Data Lake ในส่วนที่สองซึ่งเก็ฐ Cleaned Files
+### Data WareHouse (BigQuiery)
+ในการศึกษาครั้งนี้ เลือกใช้ Data WareHouse ของ Google Cloud คือ Google BigQuiery เนื่องจากสามารถเชื่อต่อกับ GOogle Cloud Storage(GCS) ได้อย่างมีประสิทธิภาพ การเชื่อมต่อทำได้ง่าย ร่วมถึงในชีวิตจริงหากใช้ Cloud เจ้าใดเจ้าหนึ่งน่าจะสามารถช่วยประหยัดค่าใช้จ่ายในการใช้งาน Cloud ได้ดีกว่าการดึงข้อมูล ข้าม Cloud ไปมาเพื่อใช้งาน
+
+### Data Transformation (dbt)
+ในการศึกษาครั้งนี้เลือกใช้ Data Build Tool(dbt) ในการทำ Data Transform ใน Data wareHouse เนื่องจากมีข้อดีในการสามารถเก็บ SQL Script เอาไว้ใช้ได้ และสามารถจัดการ Data ได้ด้วยการสั่งคำสั่งเพียงครั้งเดียว นอกจากนี้ยังเป็น Open-source ทำให้ไม่มีปัญหาเรื่องค่าใช้จ่ายเมื่อเรียกใช้งาน 
+### Data Visualization (Tableu)
+ในการศึกษาครั้งนี้เลือกใช้ Tableu ในการทำ Visualization สาเหตุที่เลือกใช้ Airflow ในการเนื่องจาก
+1. เป็นเครื่องมือทำ Visualiztion ที่มี Native Connection ให้เลือกใช้งานหลายชนิด กล่าวคือไม่ต้องอาศัยการเชื่อมต่อผ่าน odbc หรือ jdbc ทำให้สามารถเชื่อมต่อและดึงข้อมูลมาใช้ได้อย่างรวดเร็ว
+2. มีความชำนาญในการใช้เครื่อง Tableu มากกว่าการใช้ Visualization อื่นๆ ซึ่งเป็นเหตุผลที่ค่อนข้างสำคัญเนื่องจากไม่ว่าเครื่องมือที่ใช้จะสามารถใช้งานได้ดีแค่ไหน แต่หากขาดความรู้ความชำนาญในการใช้งานย่อมไม่สามารถดึงประสิทธิภาพของเครื่องมือออกมาได้ถึงจุดสูงสุด 
+3. เป็นเครื่องมือที่ใช้งานได้ค่อนข้างง่ายและมี Community ที่ค่อนข้างแข็งแรงสามารถค้นหาข้อมูล หรือข้อผิดพลาดที่เกิดขึ้นได้ง่าย นอกจากนี้ยังสามารถแสดงผลผ่าน Tableau Public ได้ในกรณีที่เป็น Open data
+
+อย่างไรก็ตาม ยังต้องคำนึกถึงค่าใช้จ่ายที่เกิดขึ้น แต่ในงานชิ้นนี้ทางผู้จัดทำใช้ Student License ทำให้ประหยัดค่าใช้จ่ายในส่วนของการใช้ Tableau ไปได้
+
+
+
 # Instruction
 
 
@@ -43,7 +87,7 @@
     ![Alt text](image/103-bucket-info.png)
 
 
-### 3. สร้าง Private key file 
+### 3. สร้าง Private key file
 - ไปที่ IAM & Admin -> Service Accounts
 
     ![Alt text](image/201-service-account.png)
@@ -71,6 +115,10 @@
     ![Alt text](image/206-create-private-key.png)
 
 - Private key file จะถูก download ให้เก็บ file นั้นไว้ เพื่อใช้ใน Capstone Project ต่อไป
+
+- และทำการสร้าง Service Accounts อีก 1 account โดยกำหนด Role ตามรูปได้ล่างนี้ เพื่อใช้สำหรับการ connect กับ tableau
+
+    ![Alt text](image/207-grant-access.png)
 
 ##
 ## Capstone Project
@@ -145,7 +193,7 @@ docker compose up
 
 ##
 
-### 2. ขั้นตอนการทำงาน automate ของ etl.py ที่อยู่ใน folder : dags ที่เชื่อมต่อกับ Airflow มีดังนี้
+### 2. ขั้นตอนการทำงาน automate จาก etl.py ที่อยู่ใน folder : dags ที่เชื่อมต่อกับ Airflow มีดังนี้
 
 - ทำการ load file CSV จากหน้า Web: https://opendata.onde.go.th/dataset/14-pm-25 ทุกชั่วโมงแล้ว save file ที่ folder: data
 - ทำการ transform ข้อมูลจากทุก file มารวมอยู่ใน file: all_data.csv ที่อยู่ใน folder: data/cleaned
@@ -165,7 +213,8 @@ docker compose up
 ##
 
 - ทำการนำข้อมูลจาก file: all_data.csv เข้า dataset: capstone_aqgs บน BigQuery
-- โดยมีการ transform แยกข้อมูลออกเป็น 2 Tables, เพิ่ม field: pollutant และทำ partition ที่ table: pm25_trans ดังนี้
+- สร้าง table: who_guidline และใส่ข้อมูล ค่ามาตรฐานของอากาศจากองค์การอนามัยโลก (WHO) สำหรับใช้ข้อมูลทำ visualization ต่อไป
+- โดยมีการ transform แยกข้อมูลออกเป็น 2 tables, ที่ table: pm25_trans ทำการเพิ่ม field: pollutant และทำ partition ดังนี้
 
     ![Alt text](image/404-bigquery.png)
 
@@ -206,7 +255,6 @@ code /home/codespace/.dbt/profiles.yml
 - ข้อมูลใน file: profiles.yml ใน folder: ds525_capstone/models
 
     ![Alt text](image/502-dbt-profiles.png)
-
 
 - ทดสอบการ connection กับ BigQuery โดย run คำสั่ง
 ```sh
