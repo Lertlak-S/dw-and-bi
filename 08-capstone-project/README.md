@@ -116,10 +116,6 @@
 
 - Private key file จะถูก download ให้เก็บ file นั้นไว้ เพื่อใช้ใน Capstone Project ต่อไป
 
-- และทำการสร้าง Service Accounts อีก 1 account โดยกำหนด Role ตามรูปได้ล่างนี้ เพื่อใช้สำหรับการ connect กับ tableau
-
-    ![Alt text](image/207-grant-access.png)
-
 ##
 ## Capstone Project
 
